@@ -11,7 +11,7 @@ class Project(models.Model):
 
 class Todo(models.Model):
     STATES = (('todo', 'To Do'), ('in progress', 'In Progress'), ('done', 'Done'))
-    project = models.OneToOneField(Project, on_delete=models.CASCADE, verbose_name="Проект")
+    project = models.ForeignKey(Project, models.PROTECT, verbose_name="Проект")
     text = models.TextField(verbose_name="Текст задачи")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")

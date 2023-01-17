@@ -34,5 +34,6 @@ const UserList = ({users}) => {
            </th>
            {users.map((user) => <UserItem user={user} />)}
        </table>
-) }
+    )
+}
 export default UserList
