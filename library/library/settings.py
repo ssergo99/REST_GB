@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-5!pw6bo^@8^ap+&ob&77-i(6y+=1j1#^eq2w(extrqgy(duinv
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -42,6 +40,8 @@ INSTALLED_APPS = [
     'app',
     'corsheaders',
     'todo',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'library.urls'
 
 CORS_ALLOWED_ORIGINS = [
-   "http://localhost:3000",
+    "http://localhost:3000",
 ]
 
 TEMPLATES = [
@@ -80,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'library.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -90,7 +89,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -118,10 +116,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-
-
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissions'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -133,7 +135,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
