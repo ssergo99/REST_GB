@@ -23,7 +23,7 @@ const ProjectTodoItem = ({todo}) => {
          }
 const ProjectTodoList = ({todos}) => {
    let { id } = useParams();
-   let filtered_todos = todos.filter((todo) => todo.project == id)
+   let filtered_todos = todos.filter((todo) => todo.project === id)
    return (
         <table>
             <th>
