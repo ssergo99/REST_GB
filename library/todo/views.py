@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import permissions
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from .models import Project, Todo
 from .serializers import ProjectSerializer, TodoSerializer
@@ -18,6 +19,7 @@ class TodoLimitOffsetPagination(LimitOffsetPagination):
 
 
 class ProjectViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -26,6 +28,7 @@ class ProjectViewSet(ModelViewSet):
 
 
 class TodoViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer

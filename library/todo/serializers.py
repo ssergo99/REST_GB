@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer
 from .models import Project, Todo
 
+
 class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
