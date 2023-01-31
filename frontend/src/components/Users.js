@@ -6,10 +6,10 @@ const UserItem = ({user}) => {
                {user.username}
            </td>
            <td>
-               {user.firstname}
+               {user.first_name}
            </td>
            <td>
-               {user.lastname}
+               {user.last_name}
            </td>
            <td>
                {user.email}
