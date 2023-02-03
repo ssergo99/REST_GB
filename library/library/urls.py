@@ -20,6 +20,7 @@ from userpro.views import UserListAPIView, UserModelViewSet
 from todo.views import ProjectViewSet, TodoViewSet
 from rest_framework.authtoken import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from graphene_django.views import GraphQLView
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
@@ -34,4 +35,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     re_path(r'^api/(?P<version>\d\.\d)/users/$', UserListAPIView.as_view()),
     path('api/users/', UserListAPIView.as_view()),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 ]
